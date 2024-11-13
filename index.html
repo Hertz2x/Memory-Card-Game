@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Card Game</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* กำหนดสไตล์พื้นฐานให้ข้อความ */
+        #title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            color: rgb(255, 0, 0); /* เริ่มด้วยสีแดง */
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title">Memory Card Game</h1>
+    <div id="game-board" class="board"></div>
+    <button id="restart-btn">Restart Game</button>
+    
+    <script src="script.js"></script>
+    <script>
+        const title = document.getElementById("title");
+
+        let r = 255, g = 0, b = 0; // กำหนดค่าเริ่มต้นของสี RGB
+
+        function changeColor() {
+            // เปลี่ยนค่าสี RGB อย่างช้า ๆ
+            if (r === 255 && g < 255 && b === 0) {
+                g += 5;
+            } else if (g === 255 && r > 0) {
+                r -= 5;
+            } else if (g === 255 && b < 255) {
+                b += 5;
+            } else if (b === 255 && g > 0) {
+                g -= 5;
+            } else if (b === 255 && r < 255) {
+                r += 5;
+            } else if (r === 255 && b > 0) {
+                b -= 5;
+            }
+            
+            title.style.color = `rgb(${r}, ${g}, ${b})`; // ตั้งค่าสีใหม่ให้ตัวอักษร
+        }
+
+        // เปลี่ยนสีทุก ๆ 100 มิลลิวินาที
+        setInterval(changeColor, 100);
+    </script>
+</body>
+</html>
